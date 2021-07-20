@@ -3,8 +3,8 @@ import torch
 
 from torch.utils.cpp_extension import load
 cd = load(name="cd",
-          sources=["chamfer_distance/chamfer_distance.cpp",
-                   "chamfer_distance/chamfer_distance.cu"])
+          sources=["pyTorchChamferDistance/chamfer_distance/chamfer_distance.cpp",
+                   "pyTorchChamferDistance/chamfer_distance/chamfer_distance.cu"])
 
 class ChamferDistanceFunction(torch.autograd.Function):
     @staticmethod
@@ -31,7 +31,7 @@ class ChamferDistanceFunction(torch.autograd.Function):
         ctx.save_for_backward(xyz1, xyz2, idx1, idx2)
 
         return dist1, dist2
-
+  `
     @staticmethod
     def backward(ctx, graddist1, graddist2):
         xyz1, xyz2, idx1, idx2 = ctx.saved_tensors
