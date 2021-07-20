@@ -31,7 +31,7 @@ class ChamferDistanceFunction(torch.autograd.Function):
         ctx.save_for_backward(xyz1, xyz2, idx1, idx2)
 
         return dist1, dist2
-  `
+
     @staticmethod
     def backward(ctx, graddist1, graddist2):
         xyz1, xyz2, idx1, idx2 = ctx.saved_tensors
